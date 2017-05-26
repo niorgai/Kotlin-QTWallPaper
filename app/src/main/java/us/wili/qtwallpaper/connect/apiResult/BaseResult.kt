@@ -6,6 +6,10 @@ package us.wili.qtwallpaper.connect.apiResult
  */
 data class BaseResult<T>(val t: T) {
 
-    lateinit var results: List<T>
+    val code: Int = 0
+
+    val error: String? = null
+
+    val results: List<T>? = null
 
 }

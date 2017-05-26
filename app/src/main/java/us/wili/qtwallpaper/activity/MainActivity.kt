@@ -15,7 +15,7 @@ class MainActivity: BaseActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 mTextMessage!!.setText(R.string.title_home)
-                fragmentManager.beginTransaction().add(R.id.content, HotFragment()).commitAllowingStateLoss()
+                supportFragmentManager.beginTransaction().add(R.id.content, HotFragment.getInstance(), "TAG").commitAllowingStateLoss()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {

@@ -1,9 +1,10 @@
 package us.wili.qtwallpaper.connect
 
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import us.wili.qtwallpaper.BuildConfig
+import us.wili.qtwallpaper.base.AppConstant
 import us.wili.qtwallpaper.connect.apiConverter.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -13,30 +14,52 @@ import java.util.concurrent.TimeUnit
  */
 class AppClient {
 
-    var client: Retrofit? = null
+    companion object {
 
-    fun getInstance(): Retrofit {
+        private var client: Retrofit? = null
 
-        if (client == null) {
-            val builder = OkHttpClient.Builder()
+        fun getInstance(): Retrofit {
 
-            if (BuildConfig.DEBUG) {
-                builder.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            if (client == null) {
+                val builder = OkHttpClient.Builder()
+
+                //add Log
+                builder.addInterceptor(HttpLoggingInterceptor().apply {
+                    level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE })
+
+                //add Header
+                val headerInterceptor = Interceptor {chain ->
+                    val originRequest: Request = chain.request()
+                    val requestBuilder = originRequest.newBuilder()
+                            .addHeader("X-LC-Id", AppConstant.AV_APP_ID)
+                            .addHeader("X-LC-Key", AppConstant.AV_APP_KEY)
+                            .method(originRequest.method(), originRequest.body())
+                            .build()
+                    val response: Response = chain.proceed(requestBuilder)
+                    val originJson: String? = response.body()?.string()
+                    val newResponse: Response = response.newBuilder()
+                            .body(ResponseBody.create(response.body()?.contentType(), originJson!!))
+                            .message(originJson)
+                            .build()
+
+                    return@Interceptor newResponse
+                }
+                builder.addInterceptor(headerInterceptor)
+
+                builder.connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .retryOnConnectionFailure(false)
+
+                client = Retrofit.Builder()
+                        .client(builder.build())
+                        .baseUrl("https://leancloud.cn:443/1.1/")
+                        .addConverterFactory(GsonConverterFactory())
+                        .build()
             }
+            return client!!
 
-            builder.connectTimeout(60, TimeUnit.SECONDS)
-                    .readTimeout(60, TimeUnit.SECONDS)
-                    .writeTimeout(60, TimeUnit.SECONDS)
-                    .retryOnConnectionFailure(false)
-
-            client = Retrofit.Builder()
-                    .client(builder.build())
-                    .baseUrl("")
-                    .addConverterFactory(GsonConverterFactory())
-                    .build()
         }
-        return client!!
-
     }
 
 }
