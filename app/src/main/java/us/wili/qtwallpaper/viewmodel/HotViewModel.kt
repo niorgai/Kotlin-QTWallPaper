@@ -7,7 +7,7 @@ import us.wili.qtwallpaper.connect.ApiCallback
 import us.wili.qtwallpaper.connect.AppClient
 import us.wili.qtwallpaper.connect.apiInterface.ICategoryService
 import us.wili.qtwallpaper.connect.apiResult.BaseResult
-import us.wili.qtwallpaper.model.CategoryItem
+import us.wili.qtwallpaper.data.model.CategoryItem
 
 /**
  * hot fragment

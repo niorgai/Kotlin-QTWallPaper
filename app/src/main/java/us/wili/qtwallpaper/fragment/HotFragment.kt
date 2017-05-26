@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.base.BaseFragment
-import us.wili.qtwallpaper.model.CategoryItem
+import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.viewmodel.HotViewModel
 
 /**

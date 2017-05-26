@@ -3,7 +3,7 @@ package us.wili.qtwallpaper.connect.apiInterface
 import retrofit2.Call
 import retrofit2.http.GET
 import us.wili.qtwallpaper.connect.apiResult.BaseResult
-import us.wili.qtwallpaper.model.CategoryItem
+import us.wili.qtwallpaper.data.model.CategoryItem
 
 /**
  * Category

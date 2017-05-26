@@ -16,11 +16,11 @@ open class ApiCallback<T>: Callback<T> {
 
     override fun onResponse(call: Call<T>?, response: Response<T>?) {
         val result = response?.body()
-        if (result == null || result !is BaseResult<*> || result.code != 0 || result.error == null) {
+        if (result == null || result !is BaseResult<*> || result.code != 0) {
             onFail()
             return
         }
-        if (!result.error.isEmpty()) {
+        if (result.error != null && !result.error.isEmpty()) {
             onFail(result.error)
             return
         }
