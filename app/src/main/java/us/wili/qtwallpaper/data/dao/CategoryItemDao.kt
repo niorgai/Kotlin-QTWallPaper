@@ -14,12 +14,12 @@ import us.wili.qtwallpaper.data.model.CategoryItem
     /**
      * get hot categories
      */
-    @Query("SELECT * FROM " + CategoryItem.TABLE_NAME + " WHERE " + CategoryItem.COLUMN_IS_HOT + " = true")
-    fun getHotCategories(): Array<CategoryItem>
+    @Query("SELECT * FROM " + CategoryItem.TABLE_NAME + " WHERE " + CategoryItem.COLUMN_IS_HOT + " = 1")
+    fun getHotCategories(): List<CategoryItem>
 
     /**
      * insert categories, use for cache
      */
     @Insert
-    fun insertAll(item: Array<CategoryItem>)
+    fun insertAll(item: List<CategoryItem>)
 }

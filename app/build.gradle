@@ -39,6 +39,7 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:${archVersion}"
     compile "android.arch.persistence.room:runtime:${archVersion}"
     annotationProcessor "android.arch.persistence.room:compiler:${archVersion}"
+    kapt "android.arch.persistence.room:compiler:${archVersion}"
 
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     compile "com.squareup.okhttp3:okhttp:${okhttpVersion}"

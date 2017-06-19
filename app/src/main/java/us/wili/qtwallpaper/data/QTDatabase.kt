@@ -3,7 +3,7 @@ package us.wili.qtwallpaper.data
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
-import android.content.Context
+import us.wili.qtwallpaper.base.QtApplication
 import us.wili.qtwallpaper.data.dao.CategoryItemDao
 import us.wili.qtwallpaper.data.model.CategoryItem
 
@@ -20,10 +20,10 @@ abstract class QTDatabase: RoomDatabase() {
 
         private var instance: QTDatabase? = null
 
-        @Synchronized fun getInstance(context: Context): QTDatabase {
+        @Synchronized fun getDatabase(): QTDatabase {
             if (instance == null) {
                 instance = Room
-                        .databaseBuilder(context.applicationContext, QTDatabase::class.java, NAME)
+                        .databaseBuilder(QtApplication.getRuntimeContext(), QTDatabase::class.java, NAME)
                         .build()
             }
             return instance!!
