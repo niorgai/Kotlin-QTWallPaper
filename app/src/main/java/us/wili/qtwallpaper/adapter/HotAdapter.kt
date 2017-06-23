@@ -3,10 +3,10 @@ package us.wili.qtwallpaper.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.bumptech.glide.Glide
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.data.model.CategoryItem
-import us.wili.qtwallpaper.image.QTImageView
 
 /**
  * Adapter for HotFragment
@@ -15,7 +15,7 @@ import us.wili.qtwallpaper.image.QTImageView
 class HotAdapter: ArrayRecyclerAdapter<CategoryItem, HotAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
-        return ViewHolder(getLayoutInflater(parent.context).inflate(R.layout.item_grid, parent, false))
+        return ViewHolder(getLayoutInflater(parent.context).inflate(R.layout.item_category, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -24,12 +24,9 @@ class HotAdapter: ArrayRecyclerAdapter<CategoryItem, HotAdapter.ViewHolder>() {
         Glide.with(holder.imageView.context).load(getItem(position)!!.coverUrl).into(holder.imageView)
     }
 
-    class ViewHolder: RecyclerView.ViewHolder {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val imageView: QTImageView
+        val imageView: ImageView = itemView.findViewById(R.id.image) as ImageView
 
-        constructor (itemView: View) : super(itemView) {
-            imageView = itemView.findViewById(R.id.image) as QTImageView
-        }
     }
 }

@@ -3,7 +3,7 @@ package us.wili.qtwallpaper.fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -40,7 +40,7 @@ class HotFragment: BaseFragment() {
         adapter = HotAdapter()
         val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view) as RecyclerView
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onLazyLoad() {
