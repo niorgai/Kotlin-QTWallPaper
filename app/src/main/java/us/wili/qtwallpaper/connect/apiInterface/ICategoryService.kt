@@ -13,4 +13,7 @@ interface ICategoryService {
 
     @GET("classes/Category?where=%7B%22isHot%22%3Atrue%7D&&&&&")
     fun getHotCategory(): Call<BaseResult<CategoryItem>>
+
+    @GET("classes/Category")
+    fun getAllCategory(): Call<BaseResult<CategoryItem>>
 }

@@ -23,6 +23,9 @@ class WallpaperItem {
     @ColumnInfo(name = COLUMN_ORDER) var order: Int = 0
         get
         set
+    @ColumnInfo(name = COLUMN_DOWNLOADS) var downloads: Int = 0
+        get
+        set
     @ColumnInfo(name = COLUMN_NAME) var name: String = ""
         get
         set
@@ -37,6 +40,7 @@ class WallpaperItem {
         const val TABLE_NAME = "Wallpaper"
         const val COLUMN_OBJECT_ID = "objectId"
         const val COLUMN_ORDER = "order"
+        const val COLUMN_DOWNLOADS = "downloads"
         const val COLUMN_CATEGORY_ID = "categoryId"
         const val COLUMN_IMAGE_URL = "imageUrl"
         const val COLUMN_NAME = "name"

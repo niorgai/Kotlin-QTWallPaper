@@ -43,7 +43,7 @@ class CategoryViewModel: ViewModel() {
     }
 
     private fun refresh() {
-        service.getHotCategory().enqueue(callback)
+        service.getAllCategory().enqueue(callback)
     }
 
     fun getCategories(): LiveData<List<CategoryItem>> {

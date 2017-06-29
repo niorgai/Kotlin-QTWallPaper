@@ -13,6 +13,7 @@ import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.adapter.HotAdapter
 import us.wili.qtwallpaper.base.BaseFragment
 import us.wili.qtwallpaper.data.model.CategoryItem
+import us.wili.qtwallpaper.data.model.WallpaperItem
 import us.wili.qtwallpaper.viewmodel.HotViewModel
 
 /**
@@ -46,7 +47,7 @@ class HotFragment: BaseFragment() {
     override fun onLazyLoad() {
         super.onLazyLoad()
         val model: HotViewModel = ViewModelProviders.of(this).get(HotViewModel::class.java)
-        model.getCategories().observe(this, Observer<List<CategoryItem>> {
+        model.getWallpapers().observe(this, Observer<List<WallpaperItem>> {
             Log.e("tag", if (it == null) "false" else it.size.toString())
             adapter.addAll(it)
         })
