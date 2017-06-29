@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.widget.TextView
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.base.BaseActivity
+import us.wili.qtwallpaper.fragment.CategoryFragment
 import us.wili.qtwallpaper.fragment.HotFragment
 
 class MainActivity: BaseActivity() {
@@ -20,6 +21,7 @@ class MainActivity: BaseActivity() {
             }
             R.id.navigation_dashboard -> {
                 mTextMessage!!.setText(R.string.title_dashboard)
+                supportFragmentManager.beginTransaction().add(R.id.content, CategoryFragment.getInstance(), "TAG").commitAllowingStateLoss()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {

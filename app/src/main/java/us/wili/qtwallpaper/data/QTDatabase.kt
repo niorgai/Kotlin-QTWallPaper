@@ -5,13 +5,15 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import us.wili.qtwallpaper.base.QtApplication
 import us.wili.qtwallpaper.data.dao.CategoryItemDao
+import us.wili.qtwallpaper.data.dao.WallpaperItemDao
 import us.wili.qtwallpaper.data.model.CategoryItem
+import us.wili.qtwallpaper.data.model.WallpaperItem
 
 /**
  * database for app
  * Created by jianqiu on 5/26/17.
  */
-@Database(entities = arrayOf(CategoryItem::class), version = 1)
+@Database(entities = arrayOf(CategoryItem::class, WallpaperItem::class), version = 1)
 abstract class QTDatabase: RoomDatabase() {
 
     companion object {
@@ -32,4 +34,6 @@ abstract class QTDatabase: RoomDatabase() {
     }
 
     abstract fun getCategoryDao(): CategoryItemDao
+
+    abstract fun getWallpaperDao(): WallpaperItemDao
 }
