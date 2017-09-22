@@ -5,14 +5,12 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.adapter.HotAdapter
 import us.wili.qtwallpaper.base.BaseFragment
-import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.data.model.WallpaperItem
 import us.wili.qtwallpaper.viewmodel.HotViewModel
 
@@ -29,6 +27,7 @@ class HotFragment: BaseFragment() {
     }
 
     private lateinit var adapter: HotAdapter
+    private lateinit var model: HotViewModel
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return LayoutInflater.from(container?.context).inflate(R.layout.fragment_hot, container, false)
@@ -44,12 +43,17 @@ class HotFragment: BaseFragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
     }
 
-    override fun onLazyLoad() {
-        super.onLazyLoad()
-        val model: HotViewModel = ViewModelProviders.of(this).get(HotViewModel::class.java)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        model = ViewModelProviders.of(this).get(HotViewModel::class.java)
         model.getWallpapers().observe(this, Observer<List<WallpaperItem>> {
-            Log.e("tag", if (it == null) "false" else it.size.toString())
             adapter.addAll(it)
         })
+    }
+
+    override fun onLazyLoad() {
+        super.onLazyLoad()
+        model.refresh()
+
     }
 }
