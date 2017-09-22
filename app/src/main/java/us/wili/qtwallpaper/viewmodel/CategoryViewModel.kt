@@ -42,12 +42,11 @@ class CategoryViewModel: ViewModel() {
         }
     }
 
-    private fun refresh() {
+    public fun refresh() {
         service.getAllCategory().enqueue(callback)
     }
 
     fun getCategories(): LiveData<List<CategoryItem>> {
-        refresh()
         return observableCategories
     }
 

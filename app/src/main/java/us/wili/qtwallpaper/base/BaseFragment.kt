@@ -1,6 +1,5 @@
 package us.wili.qtwallpaper.base
 
-import android.arch.lifecycle.LifecycleFragment
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -12,7 +11,7 @@ import us.wili.qtwallpaper.R
  * BaseFragment
  * Created by jianqiu on 5/19/17.
  */
-open class BaseFragment: LifecycleFragment() {
+open class BaseFragment: android.support.v4.app.Fragment() {
 
     var toolbar: Toolbar? = null
 

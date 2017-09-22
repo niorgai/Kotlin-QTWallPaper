@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,7 @@ class HotFragment: BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         model = ViewModelProviders.of(this).get(HotViewModel::class.java)
         model.getWallpapers().observe(this, Observer<List<WallpaperItem>> {
+            Log.d("123", it!!.size.toString())
             adapter.addAll(it)
         })
     }
