@@ -38,7 +38,7 @@ class HotFragment: BaseFragment() {
         initToolbar()
         setTitle("Hot Fragment")
         adapter = HotAdapter()
-        val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view) as RecyclerView
+        val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
     }

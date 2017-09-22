@@ -26,7 +26,7 @@ class CategoryAdapter: ArrayRecyclerAdapter<CategoryItem, CategoryAdapter.ViewHo
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val imageView: ImageView = itemView.findViewById(R.id.image) as ImageView
+        val imageView: ImageView = itemView.findViewById(R.id.image)
 
     }
 }

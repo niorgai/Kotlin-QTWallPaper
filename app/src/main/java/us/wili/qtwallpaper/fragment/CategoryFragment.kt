@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.adapter.CategoryAdapter
-import us.wili.qtwallpaper.adapter.HotAdapter
 import us.wili.qtwallpaper.base.BaseFragment
 import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.viewmodel.HotViewModel
@@ -39,7 +38,7 @@ class CategoryFragment: BaseFragment() {
         initToolbar()
         setTitle("Category Fragment")
         adapter = CategoryAdapter()
-        val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view) as RecyclerView
+        val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
     }

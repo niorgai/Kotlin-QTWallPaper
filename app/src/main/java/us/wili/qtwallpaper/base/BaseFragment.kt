@@ -57,7 +57,7 @@ open class BaseFragment: LifecycleFragment() {
     }
 
     fun initToolbar() {
-        toolbar = view?.findViewById(R.id.tool_bar) as Toolbar
+        toolbar = view?.findViewById(R.id.tool_bar)
         if (activity is AppCompatActivity) {
             (activity as AppCompatActivity).setSupportActionBar(toolbar)
         }
