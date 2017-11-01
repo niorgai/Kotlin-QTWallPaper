@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "us.wili.qtwallpaper"
         minSdkVersion 21
@@ -21,7 +21,8 @@ android {
 }
 
 def supportVersion = "26.1.0"
-def archVersion = "1.0.0-alpha9-1"
+def lifeCircelVersion = "1.0.3"
+def archVersion = "1.0.0-rc1"
 def retrofitVersion = "2.3.0"
 def okhttpVersion = "3.8.0"
 def gsonVersion = "2.8.0"
@@ -36,7 +37,7 @@ dependencies {
     compile "com.android.support:cardview-v7:${supportVersion}"
     compile "com.android.support:design:${supportVersion}"
 
-    compile "android.arch.lifecycle:runtime:${archVersion}"
+    compile "android.arch.lifecycle:runtime:${lifeCircelVersion}"
     compile "android.arch.lifecycle:extensions:${archVersion}"
     annotationProcessor "android.arch.lifecycle:compiler:${archVersion}"
     compile "android.arch.persistence.room:runtime:${archVersion}"
