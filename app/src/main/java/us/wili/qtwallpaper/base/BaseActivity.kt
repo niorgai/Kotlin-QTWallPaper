@@ -1,6 +1,5 @@
 package us.wili.qtwallpaper.base
 
-import android.graphics.Color
 import qiu.niorgai.base.BaseActivity
 
 /**
@@ -11,9 +10,5 @@ open class BaseActivity: BaseActivity() {
 
     override fun isNeedSetStatusBar(): Boolean {
         return true
-    }
-
-    override fun getStatusBarColor(): Int {
-        return Color.GRAY
     }
 }
