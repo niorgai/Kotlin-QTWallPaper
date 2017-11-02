@@ -38,7 +38,7 @@ class CategoryFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbar()
+        initToolBar()
         setTitle("Category Fragment")
         adapter = CategoryAdapter()
         val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view)

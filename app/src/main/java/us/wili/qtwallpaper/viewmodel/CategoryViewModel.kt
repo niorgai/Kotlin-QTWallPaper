@@ -3,7 +3,7 @@ package us.wili.qtwallpaper.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import us.wili.qtwallpaper.base.QtApplication
+import qiu.niorgai.runtime.ThreadManager
 import us.wili.qtwallpaper.connect.ApiCallback
 import us.wili.qtwallpaper.connect.AppClient
 import us.wili.qtwallpaper.connect.apiInterface.ICategoryService
@@ -25,7 +25,7 @@ class CategoryViewModel: ViewModel() {
         override fun onSuccess(result: BaseResult<CategoryItem>) {
             super.onSuccess(result)
             observableCategories.value = result.results
-            QtApplication.getExecutors().submit { Runnable { val database: QTDatabase = QTDatabase.getDatabase()
+            ThreadManager.getInstance().executorService.execute { Runnable { val database: QTDatabase = QTDatabase.getDatabase()
                 database.beginTransaction()
                 try {
                     database.getCategoryDao().insertAll(result.results!!)
