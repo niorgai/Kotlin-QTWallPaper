@@ -4,7 +4,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.bumptech.glide.Glide
+import qiu.niorgai.tools.image.ImageLoader
+import qiu.niorgai.tools.image.ImageLoaderFactory
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.data.model.WallpaperItem
 
@@ -21,7 +22,8 @@ class HotAdapter: ArrayRecyclerAdapter<WallpaperItem, HotAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        Glide.with(holder.imageView.context).load(getItem(position)!!.imageUrl).into(holder.imageView)
+        val loader = ImageLoader().setUri(getItem(position)!!.imageUrl).setTarget(holder.imageView)
+        ImageLoaderFactory.getInstance().loadImage(loader)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

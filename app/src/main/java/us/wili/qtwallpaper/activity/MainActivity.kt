@@ -15,7 +15,7 @@ class MainActivity: BaseActivity() {
     }
 
     private lateinit var fragments: Array<Fragment>
-    private var currentPage = 0
+    private var currentPage = -1
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -45,6 +45,11 @@ class MainActivity: BaseActivity() {
 
     }
 
+    override fun onDelayLoad() {
+        super.onDelayLoad()
+        changePage(PAGE_HOT)
+    }
+
     private fun getFragment(bundle: Bundle?, tag: String): Fragment {
         if (bundle != null && supportFragmentManager.getFragment(bundle, tag) != null) {
             return supportFragmentManager.getFragment(bundle, tag)
@@ -64,7 +69,10 @@ class MainActivity: BaseActivity() {
         if (!fragment.isAdded) {
             ft.add(R.id.content, fragment, page.toString())
         } else{
-            ft.show(fragment).hide(fragments[currentPage])
+            ft.show(fragment)
+        }
+        if (currentPage != -1) {
+            ft.hide(fragments[currentPage])
         }
         if (!isFinishing) {
             currentPage = page

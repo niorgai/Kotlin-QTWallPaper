@@ -1,6 +1,7 @@
 package us.wili.qtwallpaper.base
 
 import android.app.Application
+import com.facebook.drawee.backends.pipeline.Fresco
 import qiu.niorgai.runtime.RuntimeContext
 
 /**
@@ -11,6 +12,7 @@ class QtApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
+        Fresco.initialize(this)
         RuntimeContext.onCreate(this)
     }
 

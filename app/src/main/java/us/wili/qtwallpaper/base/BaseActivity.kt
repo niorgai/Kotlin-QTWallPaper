@@ -14,6 +14,6 @@ open class BaseActivity: BaseActivity() {
     }
 
     override fun getStatusBarColor(): Int {
-        return Color.GREEN
+        return Color.GRAY
     }
 }

@@ -3,8 +3,8 @@ package us.wili.qtwallpaper.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import com.bumptech.glide.Glide
+import qiu.niorgai.tools.image.ImageLoader
+import qiu.niorgai.tools.image.ImageLoaderFactory
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.data.model.CategoryItem
 
@@ -15,18 +15,21 @@ import us.wili.qtwallpaper.data.model.CategoryItem
 class CategoryAdapter: ArrayRecyclerAdapter<CategoryItem, CategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
-        return ViewHolder(getLayoutInflater(parent.context).inflate(R.layout.item_category, parent, false))
+        val view = getLayoutInflater(parent.context).inflate(R.layout.item_category, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        Glide.with(holder.imageView.context).load(getItem(position)!!.coverUrl).into(holder.imageView)
+        val loader = ImageLoader().setUri(getItem(position)!!.coverUrl).setTarget(holder.imageView).setNoHolder(true)
+        ImageLoaderFactory.getInstance().loadImage(loader)
+
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val imageView: ImageView = itemView.findViewById(R.id.image)
+        val imageView: us.wili.qtwallpaper.tool.ImageView = itemView.findViewById(R.id.image)
 
     }
 }
