@@ -1,9 +1,7 @@
 package us.wili.qtwallpaper.base
 
 import android.app.Application
-import android.content.Context
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import qiu.niorgai.runtime.RuntimeContext
 
 /**
  * Application class
@@ -11,22 +9,14 @@ import java.util.concurrent.Executors
  */
 class QtApplication: Application() {
 
-    companion object {
-        private lateinit var context: Context
-
-        private lateinit var executorService : ExecutorService
-
-        fun getRuntimeContext(): Context = context
-
-        fun getExecutors(): ExecutorService = executorService
-    }
-
-
-
     override fun onCreate() {
         super.onCreate()
-        context = this
-        executorService = Executors.newCachedThreadPool()
-
+        RuntimeContext.onCreate(this)
     }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        RuntimeContext.onTerminate(this)
+    }
+
 }
