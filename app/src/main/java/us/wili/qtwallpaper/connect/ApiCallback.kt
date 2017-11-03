@@ -12,6 +12,7 @@ import us.wili.qtwallpaper.connect.apiResult.BaseResult
 open class ApiCallback<T>: Callback<T> {
 
     override fun onFailure(call: Call<T>?, t: Throwable?) {
+        onFail(t.toString())
     }
 
     override fun onResponse(call: Call<T>?, response: Response<T>?) {

@@ -29,7 +29,7 @@ class WallpaperItem {
     @ColumnInfo(name = COLUMN_NAME) var name: String = ""
         get
         set
-    @ColumnInfo(name = COLUMN_CATEGORY_ID) var categoryId: String = ""
+    @ColumnInfo(name = COLUMN_CATEGORY_ID) var categoryId: CategoryItem? = null
         get
         set
     @ColumnInfo(name = COLUMN_IMAGE_URL) var imageUrl: String = ""
@@ -45,4 +45,5 @@ class WallpaperItem {
         const val COLUMN_IMAGE_URL = "imageUrl"
         const val COLUMN_NAME = "name"
     }
+
 }

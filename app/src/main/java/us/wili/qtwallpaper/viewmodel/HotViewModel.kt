@@ -74,7 +74,7 @@ class HotViewModel: ViewModel() {
     }
 
     fun refresh() {
-        iCategoryService.getHotCategory().enqueue(categoryCallback)
+//        iCategoryService.getHotCategory().enqueue(categoryCallback)
         iWallpaperService.getHotWallpaper().enqueue(wallpaperCallback)
     }
 
