@@ -1,5 +1,6 @@
 package us.wili.qtwallpaper.adapter
 
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import qiu.niorgai.tools.image.ImageLoader
 import qiu.niorgai.tools.image.ImageLoaderFactory
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.data.model.CategoryItem
+import us.wili.qtwallpaper.tool.ColorUtils
 
 /**
  * Adapter for CategoryFragment
@@ -22,7 +24,11 @@ class CategoryAdapter: ArrayRecyclerAdapter<CategoryItem, CategoryAdapter.ViewHo
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        val loader = ImageLoader().setUri(getItem(position)!!.coverUrl).setTarget(holder.imageView).setNoHolder(true)
+        val loader = ImageLoader()
+                .setHolder(ColorDrawable(ColorUtils.randomColor))
+                .setAspectRatio(1.684210526f)
+                .setUri(getItem(position)!!.coverUrl)
+                .setTarget(holder.imageView)
         ImageLoaderFactory.getInstance().loadImage(loader)
 
     }
