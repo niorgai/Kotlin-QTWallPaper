@@ -1,5 +1,6 @@
 package us.wili.qtwallpaper.adapter
 
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import qiu.niorgai.tools.image.ImageLoader
 import qiu.niorgai.tools.image.ImageLoaderFactory
 import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.data.model.WallpaperItem
+import us.wili.qtwallpaper.tool.ColorUtils
 
 /**
  * Adapter for HotFragment
@@ -16,13 +18,13 @@ import us.wili.qtwallpaper.data.model.WallpaperItem
 class HotAdapter: ArrayRecyclerAdapter<WallpaperItem, HotAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
-        return ViewHolder(getLayoutInflater(parent.context).inflate(R.layout.item_category, parent, false))
+        return ViewHolder(getLayoutInflater(parent.context).inflate(R.layout.item_wallpaper, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        val loader = ImageLoader().setUri(getItem(position)!!.imageUrl).setTarget(holder.imageView)
+        val loader = ImageLoader().setUri(getItem(position)!!.imageUrl).setAspectRatio(0.56f).setHolder(ColorDrawable(ColorUtils.randomColor)).setTarget(holder.imageView)
         ImageLoaderFactory.getInstance().loadImage(loader)
     }
 

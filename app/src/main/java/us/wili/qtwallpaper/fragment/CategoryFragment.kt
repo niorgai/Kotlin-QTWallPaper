@@ -38,8 +38,6 @@ class CategoryFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolBar()
-        setTitle("Category Fragment")
         adapter = CategoryAdapter()
         val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
@@ -52,7 +50,6 @@ class CategoryFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         super.onActivityCreated(savedInstanceState)
         model = ViewModelProviders.of(this).get(CategoryViewModel::class.java)
         model.getCategories().observe(this, Observer<List<CategoryItem>> {
-            Log.e("tag", if (it == null) "false" else it.size.toString())
             adapter.addAll(it)
             refreshLayout.isRefreshing = false
         })
