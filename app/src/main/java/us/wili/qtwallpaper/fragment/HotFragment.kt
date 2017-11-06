@@ -58,7 +58,7 @@ class HotFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         model = ViewModelProviders.of(this).get(HotViewModel::class.java)
         model.getWallpapers().observe(this, Observer<List<WallpaperItem>> {
             Log.d("123", it!!.size.toString())
-            adapter.addAll(it)
+//            adapter.addAll(it)
             refreshLayout.isRefreshing = false
         })
         model.getCategories().observe(this, Observer<List<CategoryItem>> {

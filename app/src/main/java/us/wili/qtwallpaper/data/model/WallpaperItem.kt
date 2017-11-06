@@ -2,18 +2,13 @@ package us.wili.qtwallpaper.data.model
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
-import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.PrimaryKey
 
 /**
  * Wallpaper item
  * Created by jianqiu on 6/23/17.
  */
-@Entity(tableName = WallpaperItem.TABLE_NAME, foreignKeys = arrayOf
-    (ForeignKey(entity = CategoryItem::class,
-            parentColumns = arrayOf(CategoryItem.COLUMN_OBJECT_ID),
-            childColumns = arrayOf(WallpaperItem.COLUMN_CATEGORY_ID),
-            onDelete = ForeignKey.CASCADE)))
+@Entity(tableName = WallpaperItem.TABLE_NAME)
 class WallpaperItem {
 
     @PrimaryKey

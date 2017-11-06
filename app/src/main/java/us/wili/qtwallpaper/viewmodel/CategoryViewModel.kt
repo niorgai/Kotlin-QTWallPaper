@@ -38,7 +38,9 @@ class CategoryViewModel: ViewModel() {
 
         override fun onFail(errorText: String?) {
             super.onFail(errorText)
-            observableCategories.value = QTDatabase.getDatabase().getCategoryDao().getHotCategories()
+            ThreadManager.getInstance().executorService.execute({
+                observableCategories.postValue(QTDatabase.getDatabase().getCategoryDao().getHotCategories())
+            })
         }
     }
 
