@@ -24,7 +24,7 @@ class HotAdapter: ArrayRecyclerAdapter<WallpaperItem, HotAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        val loader = ImageLoader().setUri(getItem(position)!!.imageUrl).setAspectRatio(0.56f).setHolder(ColorDrawable(ColorUtils.randomColor)).setTarget(holder.imageView)
+        val loader = ImageLoader().setUri(getItem(position)!!.getCompressedImageUrl()).setAspectRatio(0.56f).setHolder(ColorDrawable(ColorUtils.randomColor)).setTarget(holder.imageView)
         ImageLoaderFactory.getInstance().loadImage(loader)
     }
 

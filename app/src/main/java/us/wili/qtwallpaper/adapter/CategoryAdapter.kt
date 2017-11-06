@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import qiu.niorgai.tools.image.ImageLoader
 import qiu.niorgai.tools.image.ImageLoaderFactory
 import us.wili.qtwallpaper.R
+import us.wili.qtwallpaper.activity.CategoryDetailActivity
 import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.tool.ColorUtils
 
@@ -33,9 +34,20 @@ class CategoryAdapter: ArrayRecyclerAdapter<CategoryItem, CategoryAdapter.ViewHo
 
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+        override fun onClick(v: View?) {
+            if (adapterPosition == RecyclerView.NO_POSITION) {
+                return
+            }
+            val model: CategoryItem = getItem(adapterPosition)!!
+            v!!.context.startActivity(CategoryDetailActivity.newIntent(v.context, model.name, model.objectId))
+        }
 
         val imageView: us.wili.qtwallpaper.tool.ImageView = itemView.findViewById(R.id.image)
+
+        init {
+            view.setOnClickListener(this)
+        }
 
     }
 }

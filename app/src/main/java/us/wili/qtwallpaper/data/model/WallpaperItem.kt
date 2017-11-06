@@ -41,4 +41,6 @@ class WallpaperItem {
         const val COLUMN_NAME = "name"
     }
 
+    fun getCompressedImageUrl(): String = imageUrl + "?imageMogr2/thumbnail/!20p";
+
 }
