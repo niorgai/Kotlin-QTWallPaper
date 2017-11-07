@@ -14,6 +14,7 @@ import us.wili.qtwallpaper.data.QTDatabase
 import us.wili.qtwallpaper.data.QTDatabase.Companion.getDatabase
 import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.data.model.WallpaperItem
+import java.util.*
 
 /**
  * hot fragment

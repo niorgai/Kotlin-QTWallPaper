@@ -24,7 +24,7 @@ class WallpaperItem {
     @ColumnInfo(name = COLUMN_NAME) var name: String = ""
         get
         set
-    @ColumnInfo(name = COLUMN_CATEGORY_ID) var categoryId: CategoryItem? = null
+    @ColumnInfo(name = COLUMN_CATEGORY_ID) var categoryId: String? = null
         get
         set
     @ColumnInfo(name = COLUMN_IMAGE_URL) var imageUrl: String = ""

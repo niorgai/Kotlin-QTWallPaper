@@ -7,6 +7,7 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
+import us.wili.qtwallpaper.data.model.WallpaperItem
 import java.lang.reflect.Type
 
 /**
@@ -22,6 +23,7 @@ class GsonConverterFactory: Converter.Factory() {
             if (gson == null) {
                 gson = GsonBuilder()
                         .registerTypeAdapterFactory(BooleanTypeAdapter.FACTORY)
+                        .registerTypeAdapter(WallpaperItem::class.java, WallpaperItemSerializer())
                         .create();
             }
             return gson!!

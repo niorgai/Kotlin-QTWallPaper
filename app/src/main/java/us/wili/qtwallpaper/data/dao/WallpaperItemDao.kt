@@ -23,7 +23,9 @@ import us.wili.qtwallpaper.data.model.WallpaperItem
     @Query("SELECT * FROM " + WallpaperItem.TABLE_NAME + " ORDER BY " + WallpaperItem.COLUMN_DOWNLOADS + " DESC LIMIT 36")
     fun getHotWallpapers(): List<WallpaperItem>
 
-    @Query("SELECT * FROM " + WallpaperItem.TABLE_NAME + " ORDER BY " + WallpaperItem.COLUMN_DOWNLOADS + " where ")
+    @Query("SELECT * FROM " + WallpaperItem.TABLE_NAME  +
+            " WHERE " + WallpaperItem.COLUMN_CATEGORY_ID + " LIKE :arg0" +
+            " ORDER BY " + WallpaperItem.COLUMN_DOWNLOADS)
     fun getWallpapersFromCategoryId(categoryId: String): List<WallpaperItem>
 
     /**
