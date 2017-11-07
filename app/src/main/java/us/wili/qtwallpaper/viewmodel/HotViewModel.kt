@@ -3,7 +3,6 @@ package us.wili.qtwallpaper.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import qiu.niorgai.runtime.ThreadManager
 import us.wili.qtwallpaper.connect.ApiCallback
 import us.wili.qtwallpaper.connect.AppClient
@@ -11,10 +10,8 @@ import us.wili.qtwallpaper.connect.apiInterface.ICategoryService
 import us.wili.qtwallpaper.connect.apiInterface.IWallpaperService
 import us.wili.qtwallpaper.connect.apiResult.BaseResult
 import us.wili.qtwallpaper.data.QTDatabase
-import us.wili.qtwallpaper.data.QTDatabase.Companion.getDatabase
 import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.data.model.WallpaperItem
-import java.util.*
 
 /**
  * hot fragment
