@@ -18,6 +18,12 @@ import us.wili.qtwallpaper.data.model.CategoryItem
     fun getHotCategories(): List<CategoryItem>
 
     /**
+     * get All categories
+     */
+    @Query("SELECT * FROM " + CategoryItem.TABLE_NAME)
+    fun getAllCategories(): List<CategoryItem>
+
+    /**
      * insert categories, use for cache
      */
     @Insert

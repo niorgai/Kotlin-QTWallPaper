@@ -29,8 +29,7 @@ class HotViewModel: ViewModel() {
         override fun onSuccess(result: BaseResult<CategoryItem>) {
             super.onSuccess(result)
             observableCategories.value = result.results
-            ThreadManager.getInstance().executorService.execute {
-                Runnable {
+            ThreadManager.getInstance().executorService.execute ({
                     val database: QTDatabase = QTDatabase.getDatabase()
                     database.beginTransaction()
                     try {
@@ -39,7 +38,7 @@ class HotViewModel: ViewModel() {
                     } finally {
                         database.endTransaction()
                     }
-                }
+                })
             }
         }
 
