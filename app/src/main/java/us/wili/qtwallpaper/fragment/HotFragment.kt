@@ -19,7 +19,6 @@ import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.data.model.WallpaperItem
 import us.wili.qtwallpaper.view.HotCategoriesBanner
 import us.wili.qtwallpaper.viewmodel.HotViewModel
-import us.wili.qtwallpaper.viewmodel.refresh
 
 /**
  * HotFragment

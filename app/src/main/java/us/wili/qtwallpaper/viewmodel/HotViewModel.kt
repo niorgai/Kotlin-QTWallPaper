@@ -29,18 +29,18 @@ class HotViewModel: ViewModel() {
         override fun onSuccess(result: BaseResult<CategoryItem>) {
             super.onSuccess(result)
             observableCategories.value = result.results
-            ThreadManager.getInstance().executorService.execute ({
-                    val database: QTDatabase = QTDatabase.getDatabase()
-                    database.beginTransaction()
-                    try {
-                        database.getCategoryDao().insertAll(result.results!!)
-                        database.setTransactionSuccessful()
-                    } finally {
-                        database.endTransaction()
-                    }
-                })
-            }
+            ThreadManager.getInstance().executorService.execute({
+                val database: QTDatabase = QTDatabase.getDatabase()
+                database.beginTransaction()
+                try {
+                    database.getCategoryDao().insertAll(result.results!!)
+                    database.setTransactionSuccessful()
+                } finally {
+                    database.endTransaction()
+                }
+            })
         }
+
 
         override fun onFail(errorText: String?) {
             super.onFail(errorText)

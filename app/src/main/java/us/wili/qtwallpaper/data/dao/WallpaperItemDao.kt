@@ -2,6 +2,7 @@ package us.wili.qtwallpaper.data.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
+import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import us.wili.qtwallpaper.data.model.WallpaperItem
 
@@ -31,6 +32,6 @@ import us.wili.qtwallpaper.data.model.WallpaperItem
     /**
      * insert wallpapers, use for cache
      */
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(item: List<WallpaperItem>)
 }
