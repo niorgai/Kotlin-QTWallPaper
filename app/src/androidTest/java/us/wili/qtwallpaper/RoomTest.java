@@ -14,9 +14,9 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.List;
 
-import us.wili.qtwallpaper.data.QTDatabase;
-import us.wili.qtwallpaper.data.dao.CategoryItemDao;
-import us.wili.qtwallpaper.data.dao.WallpaperItemDao;
+import us.wili.qtwallpaper.data.local.QTDatabase;
+import us.wili.qtwallpaper.data.local.dao.CategoryItemDao;
+import us.wili.qtwallpaper.data.local.dao.WallpaperItemDao;
 import us.wili.qtwallpaper.data.model.CategoryItem;
 import us.wili.qtwallpaper.data.model.WallpaperItem;
 

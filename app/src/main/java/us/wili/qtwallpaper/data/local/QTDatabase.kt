@@ -1,12 +1,13 @@
-package us.wili.qtwallpaper.data
+package us.wili.qtwallpaper.data.local
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import qiu.niorgai.runtime.RuntimeContext
-import us.wili.qtwallpaper.data.dao.CategoryItemDao
-import us.wili.qtwallpaper.data.dao.WallpaperItemDao
+import us.wili.qtwallpaper.data.remote.connect.apiConverter.CategoryConverter
+import us.wili.qtwallpaper.data.local.dao.CategoryItemDao
+import us.wili.qtwallpaper.data.local.dao.WallpaperItemDao
 import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.data.model.WallpaperItem
 

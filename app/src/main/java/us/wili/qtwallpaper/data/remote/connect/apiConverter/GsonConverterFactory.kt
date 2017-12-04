@@ -1,4 +1,4 @@
-package us.wili.qtwallpaper.connect.apiConverter
+package us.wili.qtwallpaper.data.remote.connect.apiConverter
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

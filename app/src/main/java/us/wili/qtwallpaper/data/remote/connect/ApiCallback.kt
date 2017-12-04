@@ -1,9 +1,9 @@
-package us.wili.qtwallpaper.connect
+package us.wili.qtwallpaper.data.remote.connect
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import us.wili.qtwallpaper.connect.apiResult.BaseResult
+import us.wili.qtwallpaper.data.remote.connect.apiResult.BaseResult
 
 /**
  * custom kotlin callback

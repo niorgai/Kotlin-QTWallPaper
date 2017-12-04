@@ -4,12 +4,12 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import qiu.niorgai.runtime.ThreadManager
-import us.wili.qtwallpaper.connect.ApiCallback
-import us.wili.qtwallpaper.connect.AppClient
-import us.wili.qtwallpaper.connect.apiInterface.ICategoryService
-import us.wili.qtwallpaper.connect.apiInterface.IWallpaperService
-import us.wili.qtwallpaper.connect.apiResult.BaseResult
-import us.wili.qtwallpaper.data.QTDatabase
+import us.wili.qtwallpaper.data.remote.connect.ApiCallback
+import us.wili.qtwallpaper.data.remote.connect.AppClient
+import us.wili.qtwallpaper.data.remote.connect.apiInterface.ICategoryService
+import us.wili.qtwallpaper.data.remote.connect.apiInterface.IWallpaperService
+import us.wili.qtwallpaper.data.remote.connect.apiResult.BaseResult
+import us.wili.qtwallpaper.data.local.QTDatabase
 import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.data.model.WallpaperItem
 

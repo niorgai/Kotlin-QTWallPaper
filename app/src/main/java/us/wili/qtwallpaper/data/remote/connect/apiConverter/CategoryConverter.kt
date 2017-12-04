@@ -1,7 +1,6 @@
-package us.wili.qtwallpaper.data
+package us.wili.qtwallpaper.data.remote.connect.apiConverter
 
 import android.arch.persistence.room.TypeConverter
-import us.wili.qtwallpaper.connect.apiConverter.GsonConverterFactory
 import us.wili.qtwallpaper.data.model.CategoryItem
 
 /**

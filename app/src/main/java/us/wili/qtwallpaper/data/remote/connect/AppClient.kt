@@ -1,11 +1,11 @@
-package us.wili.qtwallpaper.connect
+package us.wili.qtwallpaper.data.remote.connect
 
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import us.wili.qtwallpaper.BuildConfig
 import us.wili.qtwallpaper.base.AppConstant
-import us.wili.qtwallpaper.connect.apiConverter.GsonConverterFactory
+import us.wili.qtwallpaper.data.remote.connect.apiConverter.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**

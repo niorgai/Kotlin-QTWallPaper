@@ -1,4 +1,4 @@
-package us.wili.qtwallpaper.data.dao
+package us.wili.qtwallpaper.data.local.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert

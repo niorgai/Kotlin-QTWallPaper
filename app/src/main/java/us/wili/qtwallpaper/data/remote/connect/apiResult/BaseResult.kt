@@ -1,4 +1,4 @@
-package us.wili.qtwallpaper.connect.apiResult
+package us.wili.qtwallpaper.data.remote.connect.apiResult
 
 /**
  * ApiBaseResult
