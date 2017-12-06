@@ -2,11 +2,11 @@ package us.wili.qtwallpaper.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +14,7 @@ import us.wili.qtwallpaper.R
 import us.wili.qtwallpaper.adapter.CategoryAdapter
 import us.wili.qtwallpaper.base.BaseFragment
 import us.wili.qtwallpaper.data.model.CategoryItem
+import us.wili.qtwallpaper.databinding.FragmentCategoryBinding
 import us.wili.qtwallpaper.viewmodel.CategoryViewModel
 
 /**
@@ -23,27 +24,23 @@ import us.wili.qtwallpaper.viewmodel.CategoryViewModel
 class CategoryFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
-        fun getInstance(): CategoryFragment {
-            return CategoryFragment()
-        }
+        fun getInstance(): CategoryFragment = CategoryFragment()
     }
 
-    private lateinit var refreshLayout: SwipeRefreshLayout
     private lateinit var adapter: CategoryAdapter
     private lateinit var model: CategoryViewModel
+    private lateinit var binding: FragmentCategoryBinding
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return LayoutInflater.from(container?.context).inflate(R.layout.fragment_category, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            LayoutInflater.from(container?.context).inflate(R.layout.fragment_category, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = DataBindingUtil.bind<FragmentCategoryBinding>(view!!)
         adapter = CategoryAdapter()
         val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-        refreshLayout = view.findViewById(R.id.refresh_layout)
-        refreshLayout.setOnRefreshListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -51,13 +48,13 @@ class CategoryFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         model = ViewModelProviders.of(this).get(CategoryViewModel::class.java)
         model.getCategories().observe(this, Observer<List<CategoryItem>> {
             adapter.addAll(it)
-            refreshLayout.isRefreshing = false
+            model.isRefreshing.set(false)
         })
     }
 
     override fun onLazyLoad() {
         super.onLazyLoad()
-        refreshLayout.isRefreshing = true
+        model.isRefreshing.set(true)
         model.refresh()
     }
 

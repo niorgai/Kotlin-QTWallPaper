@@ -3,19 +3,22 @@ package us.wili.qtwallpaper.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableField
 import qiu.niorgai.runtime.ThreadManager
+import us.wili.qtwallpaper.data.local.QTDatabase
+import us.wili.qtwallpaper.data.model.CategoryItem
 import us.wili.qtwallpaper.data.remote.connect.ApiCallback
 import us.wili.qtwallpaper.data.remote.connect.AppClient
 import us.wili.qtwallpaper.data.remote.connect.apiInterface.ICategoryService
 import us.wili.qtwallpaper.data.remote.connect.apiResult.BaseResult
-import us.wili.qtwallpaper.data.local.QTDatabase
-import us.wili.qtwallpaper.data.model.CategoryItem
 
 /**
  * category fragment
  * Created by jianqiu on 5/25/17.
  */
 class CategoryViewModel: ViewModel() {
+
+    public var isRefreshing: ObservableField<Boolean> = ObservableField(false)
 
     private val observableCategories: MutableLiveData<List<CategoryItem>> = MutableLiveData()
 
@@ -48,8 +51,6 @@ class CategoryViewModel: ViewModel() {
         service.getAllCategory().enqueue(callback)
     }
 
-    fun getCategories(): LiveData<List<CategoryItem>> {
-        return observableCategories
-    }
+    fun getCategories(): LiveData<List<CategoryItem>> = observableCategories
 
 }
