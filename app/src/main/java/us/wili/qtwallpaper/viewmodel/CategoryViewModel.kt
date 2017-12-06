@@ -22,12 +22,6 @@ class CategoryViewModel: ViewModel() {
 
     companion object {
 
-        @BindingAdapter("android:refreshing")
-        @JvmStatic
-        fun setRefreshing(view: SwipeRefreshLayout, refresh: Boolean) {
-            view.isRefreshing = refresh
-        }
-
         @JvmStatic
         @BindingAdapter("android:listener")
         fun setListener(view: SwipeRefreshLayout, model:CategoryViewModel) {
@@ -35,7 +29,7 @@ class CategoryViewModel: ViewModel() {
         }
     }
 
-    public var isRefreshing: ObservableBoolean = ObservableBoolean(false)
+    val isRefreshing: ObservableBoolean = ObservableBoolean(false)
 
     private val observableCategories: MutableLiveData<List<CategoryItem>> = MutableLiveData()
 

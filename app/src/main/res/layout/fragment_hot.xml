@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                              android:id="@+id/refresh_layout"
-                                              android:orientation="vertical"
-                                              android:layout_width="match_parent"
-                                              android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.design.widget.CoordinatorLayout
+    <data>
+        <variable
+            name="model"
+            type="us.wili.qtwallpaper.viewmodel.HotViewModel"/>
+    </data>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:listener="@{model}"
+        android:refreshing="@{model.isRefreshing}"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <us.wili.qtwallpaper.view.HotCategoriesBanner
-                app:layout_scrollFlags="scroll"
-                android:id="@+id/banner"
-                android:visibility="gone"
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+
+                <us.wili.qtwallpaper.view.HotCategoriesBanner
+                    app:layout_scrollFlags="scroll"
+                    android:id="@+id/banner"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
 
-        </android.support.design.widget.AppBarLayout>
+            </android.support.design.widget.AppBarLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:padding="5dp"
-            android:clipToPadding="false"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </android.support.design.widget.CoordinatorLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:padding="5dp"
+                android:clipToPadding="false"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.design.widget.CoordinatorLayout>
 
-</android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</layout>
