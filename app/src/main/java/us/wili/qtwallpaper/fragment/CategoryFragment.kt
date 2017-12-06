@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -21,7 +20,7 @@ import us.wili.qtwallpaper.viewmodel.CategoryViewModel
  * CategoryFragment
  * Created by jianqiu on 5/19/17.
  */
-class CategoryFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
+class CategoryFragment: BaseFragment() {
 
     companion object {
         fun getInstance(): CategoryFragment = CategoryFragment()
@@ -36,9 +35,9 @@ class CategoryFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = DataBindingUtil.bind<FragmentCategoryBinding>(view!!)
+        binding = DataBindingUtil.bind(view!!)
         adapter = CategoryAdapter()
-        val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view)
+        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
     }
@@ -46,19 +45,15 @@ class CategoryFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         model = ViewModelProviders.of(this).get(CategoryViewModel::class.java)
+        binding.model = model
         model.getCategories().observe(this, Observer<List<CategoryItem>> {
             adapter.addAll(it)
-            model.isRefreshing.set(false)
         })
     }
 
     override fun onLazyLoad() {
         super.onLazyLoad()
-        model.isRefreshing.set(true)
         model.refresh()
     }
 
-    override fun onRefresh() {
-        model.refresh()
-    }
 }

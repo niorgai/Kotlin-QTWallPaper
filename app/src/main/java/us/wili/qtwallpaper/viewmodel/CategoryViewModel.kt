@@ -3,7 +3,9 @@ package us.wili.qtwallpaper.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableField
+import android.databinding.BindingAdapter
+import android.databinding.ObservableBoolean
+import android.support.v4.widget.SwipeRefreshLayout
 import qiu.niorgai.runtime.ThreadManager
 import us.wili.qtwallpaper.data.local.QTDatabase
 import us.wili.qtwallpaper.data.model.CategoryItem
@@ -18,7 +20,22 @@ import us.wili.qtwallpaper.data.remote.connect.apiResult.BaseResult
  */
 class CategoryViewModel: ViewModel() {
 
-    public var isRefreshing: ObservableField<Boolean> = ObservableField(false)
+    companion object {
+
+        @BindingAdapter("android:refreshing")
+        @JvmStatic
+        fun setRefreshing(view: SwipeRefreshLayout, refresh: Boolean) {
+            view.isRefreshing = refresh
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:listener")
+        fun setListener(view: SwipeRefreshLayout, model:CategoryViewModel) {
+            view.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener { model.refresh() })
+        }
+    }
+
+    public var isRefreshing: ObservableBoolean = ObservableBoolean(false)
 
     private val observableCategories: MutableLiveData<List<CategoryItem>> = MutableLiveData()
 
@@ -28,6 +45,7 @@ class CategoryViewModel: ViewModel() {
         override fun onSuccess(result: BaseResult<CategoryItem>) {
             super.onSuccess(result)
             observableCategories.value = result.results
+            isRefreshing.set(false)
             ThreadManager.getInstance().executorService.execute ({ val database: QTDatabase = QTDatabase.getDatabase()
                 database.beginTransaction()
                 try {
@@ -43,11 +61,13 @@ class CategoryViewModel: ViewModel() {
             super.onFail(errorText)
             ThreadManager.getInstance().executorService.execute({
                 observableCategories.postValue(QTDatabase.getDatabase().getCategoryDao().getAllCategories())
+                isRefreshing.set(false)
             })
         }
     }
 
-    public fun refresh() {
+    fun refresh() {
+        isRefreshing.set(true)
         service.getAllCategory().enqueue(callback)
     }
 
